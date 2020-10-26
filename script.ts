@@ -26,11 +26,10 @@ class Game {
     currentTeam:Team;
 
     constructor() {
-        startGameButton.setAttribute("disabled",'false');
+        startGameButton.setAttribute("disabled",'true');
         (currRow = 1), (currCol = 1);
         this.team.push(new Team("CSK"));
         this.team.push(new Team("MI"));
-        // this.currentTeam = this.team[0];
     }
 
     displayTeam(name , id) {
@@ -67,28 +66,54 @@ class Game {
         }
     }
 
-
+    startTimer() {
+        var timer = <HTMLDivElement>document.querySelector('#timer');
+        var resultGenerate = <HTMLButtonElement>document.querySelector('#result');
+        resultGenerate.setAttribute('disabled','true');
+        miHit.setAttribute('disabled','true');
+        this.currentTeam = this.team[0];
+        var time = 1;
+        var interval = setInterval(() => {
+            timer.innerHTML = (time++).toString();
+            if(time===31) {
+                (currRow = 1), (currCol = 1);
+                cskHit.setAttribute('disabled','true');
+                miHit.removeAttribute('disabled');
+                this.currentTeam = this.team[1];
+            }
+            else if(time===61) {
+                cskHit.setAttribute('disabled','true');
+                miHit.setAttribute('disabled','true');
+                resultGenerate.removeAttribute('disabled');
+                startGame = false;
+                this.currentTeam = null;
+                clearInterval(interval);
+            }
+        }, 1000);
+    }
 }
 
 class Team {
-    name;
-    players: Array<Player> = [];
+    name : string;
+    players: Array<Player> = new Array(11);
     score: number = 0;
     constructor(name: string) {
         this.name = name;
         for(let index=1; index<=11; index++) {
-            this.players.push(new Player(`Player${index}`));
+            var currPlayer = new Player(`Player ${index}`);
+            this.players[i-1] = currPlayer;
+            // this.players.push(new Player(`Player${index}`));
         }
     }
 }
 
 class Player {
     name: string;
-    score: [null,null,null,null,null,null];
-    numberOfBalls: number = 0;
+    score: number;
+    // numberOfBalls: number = 0;
     constructor(name: string) {
         this.name= name;
     }
 }
 
-let game= new Game();
+var score1=0, score2=0;
