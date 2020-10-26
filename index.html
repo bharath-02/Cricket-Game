@@ -19,6 +19,56 @@
 <!-- Body tag -->
 
 <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col mt-3 mb-3">
+                <h1 class="text-center">T20-MATCH</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center mb-5">
+                <button class="btn btn-info btn-lg" id="start">Start Game</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5 col-sm-5">
+                <div class="text-center">
+                    <h3>CSK</h3>
+                    <h6 id="csk-score">0</h6>
+                    <button class="btn btn-primary">HIT</button>
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2">
+                <div class="text-center">
+                    <h3>TIMER</h3>
+                    <h6 id="timer"></h6>
+                </div>
+            </div>
+            <div class="col-xs-5 col-sm-5">
+                <div class="text-center">
+                    <h3>MI</h3>
+                    <h6 id="mi-score">0</h6>
+                    <button class="btn btn-primary">HIT</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5 col-sm-5 text-center mt-3">
+                <h3>CSK Score Board</h3>
+            </div>
+            <div class="col-xs-2 col-sm-2 text-center mt-3">
+                <button class="btn btn-primary" id="result">GENERATE</button>
+            </div>
+            <div class="col-xs-5 col-sm-5 text-center mt-3">
+                <h3>MI Score Board</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5 col-sm-5" id="csk"></div>
+            <div class="col-xs-2 col-sm-2" id="winner-details"></div>
+            <div class="col-xs-5 col-sm-5" id="mi"></div>
+        </div>
+    </div>
     <script src="Bootstrap/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
 </body>
