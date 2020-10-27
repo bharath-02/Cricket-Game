@@ -37,7 +37,7 @@ function createTable() {
         var data1 = document.createElement('td');
         data1.innerHTML = 'Player ' + (i + 1);
         var data2 = document.createElement('td');
-        data2.id = 'Player' + (i + 1) + 'B1';
+        data2.id = 'Player' + (i + 1) + 'B' + (i + 1);
         var data3 = document.createElement('td');
         data3.id = 'Player' + (i + 1) + 'B' + (i + 2);
         var data4 = document.createElement('td');
@@ -49,6 +49,7 @@ function createTable() {
         var data7 = document.createElement('td');
         data7.id = 'Player' + (i + 1) + 'B' + (i + 6);
         var data8 = document.createElement('td');
+        data8.id = 'Player' + (i + 1) + 'Total';
         row.append(data1, data2, data3, data4, data5, data6, data7, data8);
         bodyCsk.append(row);
     }
@@ -116,11 +117,34 @@ function startTimer() {
         }
     }, 1000);
 }
+// CSK Score Generator
+function cskScore() {
+    var run = Math.floor(Math.random() * 7);
+    totalTeamScore(run);
+    totalPlayerScore(run);
+    perBallScore(run);
+}
+// MI Score Generator
+function miScore() {
 
-// CSK Batting
-function cskBatting() {
-    var val = document.getElementById('Player1B4');
-    val.innerHTML = 5;
+}
+
+//  Total Team Score
+function totalTeamScore(run) {
+    var total = document.getElementById('csk-score');
+    var currRun = parseInt(total.innerHTML);
+    run = parseInt(run);
+    total.innerHTML = currRun + run;
+}
+
+//  Total Player Score
+function totalPlayerScore(run) {
+
+}
+
+// Score Per Ball
+function perBallScore(run) {
+
 }
 
 function start() {
@@ -129,5 +153,4 @@ function start() {
     miHit.setAttribute('disabled', 'true');
     createTable();
     startTimer();
-    cskBatting();
 }
