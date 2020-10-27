@@ -3,16 +3,16 @@ var cskHit = document.getElementById('csk-hit');
 var miHit = document.getElementById('mi-hit');
 var result = document.getElementById('result');
 
+// Creating table for ScoreBoard
 function createTable() {
     var cskTable = document.getElementById('csk');
     var miTable = document.getElementById('mi');
 
+    // CSK Scoreboard
     var table1 = document.createElement('table');
     table1.setAttribute('class', 'table table-bordered table-striped table-dark');
-
     var headCsk = document.createElement('thead');
     var bodyCsk = document.createElement('tbody');
-
     var rowCsk = document.createElement('tr');
     var heading1csk = document.createElement('th');
     heading1csk.innerHTML = 'Players';
@@ -37,11 +37,17 @@ function createTable() {
         var data1 = document.createElement('td');
         data1.innerHTML = 'Player ' + (i + 1);
         var data2 = document.createElement('td');
+        data2.id = 'Player' + (i + 1) + 'B1';
         var data3 = document.createElement('td');
+        data3.id = 'Player' + (i + 1) + 'B' + (i + 2);
         var data4 = document.createElement('td');
+        data4.id = 'Player' + (i + 1) + 'B' + (i + 3);
         var data5 = document.createElement('td');
+        data5.id = 'Player' + (i + 1) + 'B' + (i + 4);
         var data6 = document.createElement('td');
+        data6.id = 'Player' + (i + 1) + 'B' + (i + 5);
         var data7 = document.createElement('td');
+        data7.id = 'Player' + (i + 1) + 'B' + (i + 6);
         var data8 = document.createElement('td');
         row.append(data1, data2, data3, data4, data5, data6, data7, data8);
         bodyCsk.append(row);
@@ -49,14 +55,11 @@ function createTable() {
     table1.append(headCsk, bodyCsk);
     cskTable.append(table1);
 
-
-
+    // MI Scoreboard
     var table2 = document.createElement('table');
     table2.setAttribute('class', 'table table-bordered table-striped table-dark');
-
     var headMi = document.createElement('thead');
     var bodyMi = document.createElement('tbody');
-
     var rowMi = document.createElement('tr');
     var heading1mi = document.createElement('th');
     heading1mi.innerHTML = 'Players';
@@ -94,9 +97,37 @@ function createTable() {
     miTable.append(table2);
 }
 
+// Timer Function
+function startTimer() {
+    var currTeam = 'CSK';
+    var timer = document.getElementById('timer');
+    var time = 1;
+    var interval = setInterval(() => {
+        timer.innerHTML = (time++).toString();
+        if (time === 61 && currTeam === 'MI') {
+            miHit.setAttribute('disabled', 'true');
+            result.removeAttribute('disabled');
+            clearInterval(interval);
+        } else if (time === 61) {
+            cskHit.setAttribute('disabled', 'true');
+            miHit.removeAttribute('disabled');
+            time = 1;
+            currTeam = 'MI';
+        }
+    }, 1000);
+}
+
+// CSK Batting
+function cskBatting() {
+    var val = document.getElementById('Player1B4');
+    val.innerHTML = 5;
+}
+
 function start() {
     startButton.setAttribute('disabled', 'true');
     result.setAttribute('disabled', 'true');
     miHit.setAttribute('disabled', 'true');
     createTable();
+    startTimer();
+    cskBatting();
 }
